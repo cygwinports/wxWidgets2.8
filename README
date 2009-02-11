@@ -1,0 +1,111 @@
+wxWidgets2.8
+------------------------------------------
+wxWidgets is a set of libraries that allows C++ applications to compile
+and run on several different types of computer, with minimal source code
+changes. There is one library per supported GUI (such as Windows, GTK+,
+Motif, and Mac). As well as providing a common API (Application
+Programming Interface) for GUI functionality, it provides functionality
+for accessing some commonly-used operating system facilities, from
+copying and deleting files to socket and thread support. wxWidgets is a
+'framework' in the sense that it provides a lot of built-in
+functionality, which the application can use or replace as required,
+thus saving a great deal of coding effort. Basic data structures such as
+strings, arrays, linked lists and hash tables are also supported.
+
+Runtime requirements:
+  cygwin-1.5.25-15
+  libexpat1-2.0.1-1
+  libiconv2-1.12-1
+  zlib-1.2.3-2
+(gtk2)
+  gstreamer0.10-plugins-base
+  gstreamer0.10-plugins-oss
+  gstreamer0.10-plugins-ximage
+  libcairo2-1.8.6-1
+  libesd0-0.2.41-1
+  libgdk_pixbuf2.0_0-2.14.7-2
+  libGL1-7.2-2
+  libglib2.0_0-2.18.4-1
+  libgnomeprint2.2_0-2.18.5-1
+  libgnomeprintui2.2_0-2.18.3-1
+  libgstinterfaces0.10_0-0.10.22-1
+  libgstreamer0.10_0-0.10.22-1
+  libgtk2.0_0-2.14.7-2
+  libjpeg62-6b-12
+  libpango1.0_0-1.22.4-1
+  libpng12-1.2.34-1
+  libSM6-1.1.0-1
+  libtiff5-3.8.2-3
+  libX11_6-1.1.5-2
+  libXinerama1-1.0.3-1
+
+Build requirements:
+(besides corresponding -devel packages)
+  autoconf2.5-2.63-1
+  binutils-20080624-2
+  cppunit-1.12.0-1
+  cygport-0.4.3-1
+  gawk-3.1.6-1
+  gcc-core-3.4.4-3
+  gcc-g++-3.4.4-3
+  make-3.81-1
+  pkg-config-0.23a-2
+  sed-4.1.5-2
+
+Canonical website:
+  http://www.wxwidgets.org/
+
+Canonical download:
+  http://downloads.sourceforge.net/wxwindows/
+
+-------------------------------------------
+
+Build instructions:
+  unpack wxWidgets2.8-2.8.9.1-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./wxWidgets2.8-2.8.9.1-X.cygport all
+
+This will create:
+  /usr/src/libwxbase2.8-devel-2.8.9.1-X.tar.bz2
+  /usr/src/libwxbase2.8_0-2.8.9.1-X.tar.bz2
+  /usr/src/libwxgtk2.8-devel-2.8.9.1-X.tar.bz2
+  /usr/src/libwxgtk2.8_0-2.8.9.1-X.tar.bz2
+  /usr/src/python-wx2.8-2.8.9.1-X.tar.bz2
+  /usr/src/wxWidgets2.8-2.8.9.1-X-src.tar.bz2
+
+A list of files in each package can be found by running:
+cygcheck -l PACKAGE [PACKAGE2 ...]
+
+-------------------------------------------
+
+Port Notes:
+
+----- version 2.8.9.1-2 -----
+Rebuilt C++ libraries and Python bindings together.
+Enabled wxDisplay (Xinerama) support.
+
+----- version 2.8.9.1-1 -----
+Version bump.
+
+----- version 2.8.8.0-1 -----
+Version bump.
+
+----- version 2.8.7-1 -----
+Version bump.
+Disabled unused motif and x11univ ports.
+Disabled GnomeVFS support as it lead to crashes on exit.
+
+----- version 2.8.6-1 -----
+Version bump.
+
+----- version 2.8.5-1 -----
+Version bump.
+
+----- version 2.8.4-1 -----
+Initial release of 2.8 branch for Cygwin.
+
+
+Cygwin port maintained by:
+http://sourceware.org/cygwinports/

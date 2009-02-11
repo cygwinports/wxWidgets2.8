@@ -1,0 +1,157 @@
+inherit distutils
+
+DESCRIPTION="wxWidgets C++ application framework"
+HOMEPAGE="http://wxwidgets.org/"
+SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
+PATCH_URI="
+	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.8-collision.patch
+	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.6-wxrc_link_fix.patch
+	mirror://portage/dev-python/wxpython/files/wxpython-2.8.8-wxversion-scripts.patch
+	2.8.8-configure.patch
+	2.8.8-cygwin-unix.patch
+	2.8.8-dllexport.patch
+	2.8.8-dlopen.patch
+	2.8.8-gtk2-no-idle-handler.patch
+	2.8.8-odbc.patch
+	2.8.8-python-build.patch
+"
+SRC_DIR="wxPython-src-${PV}"
+
+DISTCLEANFILES="wxPython/build_options.py"
+
+slot=${PV_MAJ_MIN}
+
+PKG_NAMES="${PN} libwxbase2.8_0 libwxbase2.8-devel libwxgtk2.8_0 libwxgtk2.8-devel
+           python-wx2.8 python-wxversion"
+libwxbase2_8_0_CONTENTS="usr/bin/cygwx_base*-2.8-0.dll usr/share/doc/ usr/share/locale/"
+libwxgtk2_8_0_CONTENTS="usr/bin/cygwx_gtk2*-2.8-0.dll"
+python_wx2_8_CONTENTS="--exclude=wx-config-${slot} etc/*/python-wx2.8.sh
+                       usr/bin/*-${slot} usr/include/wx-${slot}/wx/wxPython/
+                       ${PYTHON_SITELIB#/}/wx-${slot}-gtk2-ansi/"
+python_wxversion_CONTENTS="${PYTHON_SITELIB#/}/wx.pth
+                           ${PYTHON_SITELIB#/}/wxPython_common*.egg-info
+                           ${PYTHON_SITELIB#/}/wxversion.*"
+
+DIFF_EXCLUDES="swigver.h wx.pth *_wrap.cpp"
+
+MAKEOPTS+=" -j1"
+
+src_compile() {
+	local myconf
+
+	cd ${S}
+	autoconf -f || error "autoconf failed"
+
+	cd ${S}/locale
+	rm -f *.mo
+	cygmake allmo
+
+	cd ${B}
+
+	# standalone wx_base
+	cygconf \
+		--enable-compat26 \
+		--enable-optimise \
+		--enable-shared \
+		--disable-gui \
+		--disable-rpath \
+		--with-expat \
+		--with-zlib \
+		--without-odbc
+
+	rm -f configarg.cache
+
+	# gnomevfs: Gentoo bug 203389
+	cygconf \
+		--enable-compat26 \
+		--enable-graphics_ctx \
+		--enable-mediactrl \
+		--enable-optimise \
+		--enable-shared \
+		--disable-gtktest \
+		--disable-rpath \
+		--disable-sdltest \
+		--with-expat \
+		--with-gtk=2 --with-gnomeprint --without-gnomevfs \
+		--with-libpng \
+		--with-libjpeg \
+		--with-libtiff \
+		--with-libxpm \
+		--with-opengl \
+		--with-zlib \
+		--without-odbc
+
+	cygmake
+
+	cd contrib/src
+	cygmake
+
+	mkdir -p ${B}/wxPython
+	lndirs ${S}/wxPython ${B}/wxPython
+	cd ${B}/wxPython
+
+	export WXWIN=${S}
+
+	${PYTHON} setup.py build \
+		WX_CONFIG=${B}/lib/wx/config/inplace-gtk2-ansi-release-${slot} \
+		SYS_WX_CONFIG=/usr/lib/wx/config/gtk2-ansi-release-${slot} \
+		UNICODE=0
+}
+
+src_test() {
+	cd ${B}/tests
+	cygmake
+	PATH="${B}/lib:$PATH" ./test
+	PATH="${B}/lib:$PATH" ./test_gui
+}
+
+src_install() {
+	local libname
+
+	cd ${B}/wxPython
+
+	export WXWIN=${S}
+
+	distutils_install \
+		WX_CONFIG=${B}/lib/wx/config/gtk2-ansi-release-${slot} \
+		SYS_WX_CONFIG=/usr/lib/wx/config/gtk2-ansi-release-${slot} \
+		UNICODE=0
+
+	mv ${D}${PYTHON_SITELIB}/wxaddons* ${D}${PYTHON_SITELIB}/wx-${slot}-gtk2-ansi/
+
+	for bin in ${D}/usr/bin/*
+	do
+		mv ${bin} ${bin}-${slot}
+	done
+
+	cd ${B}
+	cyginstall
+
+	cp -f lib/lib* ${D}/usr/lib/
+	cp -fr lib/wx/ ${D}/usr/lib/
+	rm -f ${D}/usr/lib/wx/config/inplace-*
+
+	cd contrib/src
+	cyginstall
+
+	mv ${D}/usr/lib/*.dll ${D}/usr/bin
+	mv ${D}/usr/bin/wxrc-${slot}{,.exe}
+
+	# FIXME: wrapper
+	rm -f ${D}/usr/bin/wx-config-${slot}
+	dosym ../lib/wx/config/gtk2-ansi-release-${slot} /usr/bin/wx-config-${slot}
+
+	cd ${S}
+	dodoc INSTALL-MOTIF.txt INSTALL-X11.txt README-MOTIF.txt README-X11.txt \
+		patch-readme.txt
+
+	insinto /usr/share/aclocal
+	newins ${S}/wxwin.m4 wxwin-${slot}.m4
+
+	cd ${S}/docs
+	dodoc changes.txt gpl.txt lgpl.txt licendoc.txt preamble.txt todo.txt
+
+	cp -r ${S}/docs/html/ ${D}/usr/share/doc/${P}
+
+	rm -f ${D}/usr/share/locale/*/LC_MESSAGES/wxmsw*.mo
+}

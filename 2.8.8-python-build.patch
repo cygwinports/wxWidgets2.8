@@ -1,0 +1,59 @@
+--- origsrc/wxPython-src-2.8.8.0/wxPython/config.py	2008-06-08 18:37:49.000000000 -0500
++++ src/wxPython-src-2.8.8.0/wxPython/config.py	2008-06-29 21:10:50.250000000 -0500
+@@ -597,10 +596,10 @@
+         # installed with a standard prefix and wx-config does not
+         # output these libdirs because they are already searched by
+         # default by the compiler and linker.
+-        if lflags[0][:2] != '-L':  
+-           dirs = libdirs + ['/usr/lib', '/usr/local/lib']
+-        else:
+-           dirs = libdirs
++#        if lflags[0][:2] != '-L':  
++        dirs = libdirs + ['/usr/lib']
++#        else:
++#           dirs = libdirs
+         name = 'lib'+name
+     else:
+         dirs = libdirs[:]
+@@ -1027,6 +1026,17 @@
+         if WXPORT != 'msw':
+             libdirs.append("/usr/X11R6/lib")
+ 
++        if WXPORT == 'gtk':
++            portcfg = os.popen('gtk-config --libs', 'r').read()[:-1]
++        elif WXPORT == 'gtk2':
++            portcfg = os.popen('pkg-config gtk+-2.0 --libs', 'r').read()[:-1]
++        elif WXPORT == 'x11':
++            portcfg = '-lXext -lX11'
++        else:
++            raise SystemExit, "Unknown WXPORT value: " + WXPORT
++
++        lflags += portcfg.split()
++
+ 
+     # Move the various -I, -D, etc. flags we got from the *config scripts
+     # into the distutils lists.
+@@ -1085,7 +1096,7 @@ HYBRID=%d
+ try: 
+     from build_options import *
+ except:
+-    build_options_file = os.path.join(os.path.dirname(__file__), "build_options.py")
++    build_options_file = os.path.join('.', "build_options.py")
+     if not os.path.exists(build_options_file):
+         try:
+             myfile = open(build_options_file, "w")
+--- origsrc/wxPython-src-2.8.8.0/wxPython/setup.py	2008-06-08 18:37:49.000000000 -0500
++++ src/wxPython-src-2.8.8.0/wxPython/setup.py	2008-06-29 21:10:50.265625000 -0500
+@@ -564,10 +561,8 @@
+     gl_libs = []
+     gl_libdirs = libdirs[:]
+     if os.name == 'posix':
+-        gl_config = os.popen(WX_CONFIG + ' --libs', 'r').read()[:-1] + \
+-                    os.popen(WX_CONFIG + ' --libs gl', 'r').read()[:-1]
+-        gl_lflags = gl_config.split()
+-        gl_lflags = adjustLFLAGS(gl_lflags, gl_libdirs, gl_libs)
++        gl_libs = libs + makeLibName('gl') + ['GLU', 'GL']
++        gl_lflags = lflags
+ 
+ 
+     else:

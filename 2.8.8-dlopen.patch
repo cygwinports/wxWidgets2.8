@@ -1,0 +1,68 @@
+--- origsrc/wxPython-src-2.8.8.0/src/gtk/gnome/gprint.cpp	2007-09-11 16:25:24.000000000 -0500
++++ src/wxPython-src-2.8.8.0/src/gtk/gnome/gprint.cpp	2008-06-29 17:37:08.484375000 -0500
+@@ -198,11 +198,19 @@
+ 
+     wxLogNull log;
+ 
++#ifdef __CYGWIN__
++    m_gnome_print_lib = new wxDynamicLibrary( wxT("cyggnomeprint-2-2-0.dll") );
++#else
+     m_gnome_print_lib = new wxDynamicLibrary( wxT("libgnomeprint-2-2.so.0") );
++#endif
+     m_ok = m_gnome_print_lib->IsLoaded();
+     if (!m_ok) return;
+ 
++#ifdef __CYGWIN__
++    m_gnome_printui_lib = new wxDynamicLibrary( wxT("cyggnomeprintui-2-2-0.dll") );
++#else
+     m_gnome_printui_lib = new wxDynamicLibrary( wxT("libgnomeprintui-2-2.so.0") );
++#endif
+     m_ok = m_gnome_printui_lib->IsLoaded();
+     if (!m_ok) return;
+ 
+--- origsrc/wxPython-src-2.8.8.0/src/gtk/gnome/gvfs.cpp	2008-02-29 14:32:16.000000000 -0600
++++ src/wxPython-src-2.8.8.0/src/gtk/gnome/gvfs.cpp	2008-06-29 17:37:08.484375000 -0500
+@@ -75,7 +75,11 @@
+ 
+     wxLogNull log;
+ 
++#ifdef __CYGWIN__
++    m_gnome_vfs_lib = new wxDynamicLibrary( wxT("cyggnomevfs-2-0.dll") );
++#else
+     m_gnome_vfs_lib = new wxDynamicLibrary( wxT("libgnomevfs-2.so.0") );
++#endif
+     m_ok = m_gnome_vfs_lib->IsLoaded();
+     if (!m_ok) return;
+ 
+--- origsrc/wxPython-src-2.8.8.0/src/unix/dlunix.cpp	2008-02-29 14:32:17.000000000 -0600
++++ src/wxPython-src-2.8.8.0/src/unix/dlunix.cpp	2008-06-29 17:37:08.515625000 -0500
+@@ -70,6 +70,8 @@
+     const wxChar *wxDynamicLibrary::ms_dllext = _T(".sl");
+ #elif defined(__DARWIN__)
+     const wxChar *wxDynamicLibrary::ms_dllext = _T(".bundle");
++#elif defined(__CYGWIN__)
++    const wxChar *wxDynamicLibrary::ms_dllext = _T(".dll");
+ #else
+     const wxChar *wxDynamicLibrary::ms_dllext = _T(".so");
+ #endif
+@@ -361,7 +363,11 @@
+         details->m_length = (char *)end - (char *)start;
+ 
+         // try to extract the library version from its name
++#ifdef __CYGWIN__
++        const size_t posExt = path.rfind(_T(".dll"));
++#else
+         const size_t posExt = path.rfind(_T(".so"));
++#endif
+         if ( posExt != wxString::npos )
+         {
+             if ( path.c_str()[posExt + 3] == _T('.') )
+@@ -390,7 +396,7 @@
+ {
+     wxDynamicLibraryDetailsArray dlls;
+ 
+-#ifdef __LINUX__
++#if defined(__LINUX__) || defined(__CYGWIN__)
+     // examine /proc/self/maps to find out what is loaded in our address space
+     wxFFile file(_T("/proc/self/maps"));
+     if ( file.IsOpened() )

@@ -1,0 +1,18 @@
+#!/bin/sh
+bindir=/usr/bin
+slot=2.8
+rank=208
+
+/usr/sbin/update-alternatives \
+  --install ${bindir}/pywxrc	pywxrc		${bindir}/pywxrc-${slot} ${rank} \
+  --slave ${bindir}/editra		editra		${bindir}/editra-${slot} \
+  --slave ${bindir}/helpviewer	helpviewer	${bindir}/helpviewer-${slot} \
+  --slave ${bindir}/img2png		img2png		${bindir}/img2png-${slot} \
+  --slave ${bindir}/img2py		img2py		${bindir}/img2py-${slot} \
+  --slave ${bindir}/img2xpm		img2xpm		${bindir}/img2xpm-${slot} \
+  --slave ${bindir}/pyalacarte	pyalacarte	${bindir}/pyalacarte-${slot} \
+  --slave ${bindir}/pyalamode	pyalamode	${bindir}/pyalamode-${slot} \
+  --slave ${bindir}/pycrust		pycrust		${bindir}/pycrust-${slot} \
+  --slave ${bindir}/pyshell		pyshell		${bindir}/pyshell-${slot} \
+  --slave ${bindir}/pywrap		pywrap		${bindir}/pywrap-${slot} \
+  --slave ${bindir}/xrced		xrced		${bindir}/xrced-${slot}

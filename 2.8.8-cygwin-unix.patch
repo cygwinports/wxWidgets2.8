@@ -1,0 +1,51 @@
+--- origsrc/wxPython-src-2.8.8.0/src/unix/stdpaths.cpp	2007-07-04 14:25:09.000000000 -0500
++++ src/wxPython-src-2.8.8.0/src/unix/stdpaths.cpp	2008-06-29 17:37:08.546875000 -0500
+@@ -34,7 +34,7 @@
+ 
+ #include "wx/filename.h"
+ 
+-#if defined( __LINUX__ ) || defined( __VMS )
++#if defined( __LINUX__ ) || defined( __VMS ) || defined(__CYGWIN__)
+     #include <unistd.h>
+ #endif
+ 
+@@ -113,7 +113,7 @@
+ 
+ wxString wxStandardPaths::GetExecutablePath() const
+ {
+-#ifdef __LINUX__
++#if defined(__LINUX__) || defined(__CYGWIN__)
+     wxString exeStr;
+ 
+     char buf[4096];
+--- origsrc/wxPython-src-2.8.8.0/src/unix/threadpsx.cpp	2007-09-11 17:25:38.000000000 -0500
++++ src/wxPython-src-2.8.8.0/src/unix/threadpsx.cpp	2008-06-29 17:37:08.562500000 -0500
+@@ -52,7 +52,7 @@
+ #endif
+ 
+ // we use wxFFile under Linux in GetCPUCount()
+-#ifdef __LINUX__
++#if defined(__LINUX__) || defined(__CYGWIN__)
+     #include "wx/ffile.h"
+     // For setpriority.
+     #include <sys/time.h>
+@@ -995,7 +995,7 @@
+     {
+         return rc;
+     }
+-#elif defined(__LINUX__) && wxUSE_FFILE
++#elif (defined(__LINUX__) || defined(__CYGWIN__)) && wxUSE_FFILE
+     // read from proc (can't use wxTextFile here because it's a special file:
+     // it has 0 size but still can be read from)
+     wxLogNull nolog;
+--- origsrc/wxPython-src-2.8.8.0/src/unix/utilsunx.cpp	2007-10-20 21:51:44.000000000 -0500
++++ src/wxPython-src-2.8.8.0/src/unix/utilsunx.cpp	2008-06-29 17:37:08.562500000 -0500
+@@ -948,7 +948,7 @@
+ 
+ wxMemorySize wxGetFreeMemory()
+ {
+-#if defined(__LINUX__)
++#if defined(__LINUX__) || defined(__CYGWIN__)
+     // get it from /proc/meminfo
+     FILE *fp = fopen("/proc/meminfo", "r");
+     if ( fp )

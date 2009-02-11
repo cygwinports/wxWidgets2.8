@@ -1,0 +1,37 @@
+--- origsrc/wxPython-src-2.8.8.0/src/gtk/glcanvas.cpp	2008-02-29 14:32:16.000000000 -0600
++++ src/wxPython-src-2.8.8.0/src/gtk/glcanvas.cpp	2008-06-29 17:37:08.468750000 -0500
+@@ -185,8 +185,10 @@
+ static void
+ gtk_glcanvas_size_callback( GtkWidget *WXUNUSED(widget), GtkAllocation* alloc, wxGLCanvas *win )
+ {
++#ifndef __WXGTK20__
+     if (g_isIdle)
+         wxapp_install_idle_handler();
++#endif
+ 
+     if (!win->m_hasVMT)
+         return;
+--- origsrc/wxPython-src-2.8.8.0/src/unix/mediactrl.cpp	2007-11-12 13:33:31.000000000 -0600
++++ src/wxPython-src-2.8.8.0/src/unix/mediactrl.cpp	2008-06-29 17:37:08.531250000 -0500
+@@ -145,8 +145,10 @@
+ #      define DEBUG_MAIN_THREAD
+ #   endif // Debug
+ 
++#ifndef __WXGTK20__
+ extern void wxapp_install_idle_handler();
+ extern bool g_isIdle;
++#endif
+ extern bool g_mainThreadLocked;
+ #endif // wxGTK
+ 
+@@ -323,8 +325,10 @@
+ {
+     DEBUG_MAIN_THREAD // TODO: Is this neccessary?
+ 
++#ifndef __WXGTK20__
+     if (g_isIdle)   // FIXME: Why is needed? For wxYield? ??
+         wxapp_install_idle_handler();
++#endif
+ 
+     wxYield();    // FIXME: RN: X Server gets an error/crash if I don't do
+                   //       this or a messagebox beforehand?!?!??
