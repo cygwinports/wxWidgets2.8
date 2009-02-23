@@ -117,8 +117,6 @@ src_install() {
 		SYS_WX_CONFIG=/usr/lib/wx/config/gtk2-ansi-release-${slot} \
 		UNICODE=0
 
-	mv ${D}${PYTHON_SITELIB}/wxaddons* ${D}${PYTHON_SITELIB}/wx-${slot}-gtk2-ansi/
-
 	for bin in ${D}/usr/bin/*
 	do
 		mv ${bin} ${bin}-${slot}

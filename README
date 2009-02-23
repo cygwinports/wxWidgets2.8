@@ -61,19 +61,19 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack wxWidgets2.8-2.8.9.1-X-src.tar.bz2
+  unpack wxWidgets2.8-2.8.9.2-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./wxWidgets2.8-2.8.9.1-X.cygport all
+  cygport ./wxWidgets2.8-2.8.9.2-X.cygport all
 
 This will create:
-  /usr/src/libwxbase2.8-devel-2.8.9.1-X.tar.bz2
-  /usr/src/libwxbase2.8_0-2.8.9.1-X.tar.bz2
-  /usr/src/libwxgtk2.8-devel-2.8.9.1-X.tar.bz2
-  /usr/src/libwxgtk2.8_0-2.8.9.1-X.tar.bz2
-  /usr/src/python-wx2.8-2.8.9.1-X.tar.bz2
-  /usr/src/wxWidgets2.8-2.8.9.1-X-src.tar.bz2
+  /usr/src/libwxbase2.8-devel-2.8.9.2-X.tar.bz2
+  /usr/src/libwxbase2.8_0-2.8.9.2-X.tar.bz2
+  /usr/src/libwxgtk2.8-devel-2.8.9.2-X.tar.bz2
+  /usr/src/libwxgtk2.8_0-2.8.9.2-X.tar.bz2
+  /usr/src/python-wx2.8-2.8.9.2-X.tar.bz2
+  /usr/src/wxWidgets2.8-2.8.9.2-X-src.tar.bz2
 
 A list of files in each package can be found by running:
 cygcheck -l PACKAGE [PACKAGE2 ...]
@@ -81,6 +81,9 @@ cygcheck -l PACKAGE [PACKAGE2 ...]
 -------------------------------------------
 
 Port Notes:
+
+----- version 2.8.9.2-1 -----
+Version bump.
 
 ----- version 2.8.9.1-2 -----
 Rebuilt C++ libraries and Python bindings together.
