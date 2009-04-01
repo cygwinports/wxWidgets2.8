@@ -1,7 +1,7 @@
 category: X11
-requires: cygwin libGL-devel libgtk2.0-devel libwxbase2.8-devel libwxgtk2.8_0 libX11-devel
+requires: cygwin gstreamer0.10-plugins-base gstreamer0.10-plugins-oss gstreamer0.10-plugins-ximage libcairo2 libesd0 libgcc1 libgdk_pixbuf2.0_0 libGL1 libglib2.0_0 libgnomeprint2.2_0 libgnomeprintui2.2_0 libgstinterfaces0.10_0 libgstreamer0.10_0 libgtk2.0_0 libjpeg62 libpango1.0_0 libpng12 libstdc++6 libSM6 libtiff5 libwx_baseu2.8_0 libX11_6 libXinerama1
 external-source: wxWidgets2.8
-sdesc: "wxWidgets 2.8 C++ application framework (GTK+ development)"
+sdesc: "wxWidgets 2.8 C++ application framework (GTK+ runtime)"
 ldesc: "wxWidgets is a set of libraries that allows C++ applications to
 compile and run on several different types of computer, with minimal
 source code changes. There is one library per supported GUI (such as

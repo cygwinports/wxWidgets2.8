@@ -1,7 +1,7 @@
 category: X11
-requires: cygwin libexpat1-devel libiconv libwxbase2.8_0 zlib
+requires: cygwin libexpat1 libgcc1 libiconv2 libstdc++6 zlib0
 external-source: wxWidgets2.8
-sdesc: "wxWidgets 2.8 C++ application framework (base development)"
+sdesc: "wxWidgets 2.8 C++ application framework (base unicode runtime)"
 ldesc: "wxWidgets is a set of libraries that allows C++ applications to
 compile and run on several different types of computer, with minimal
 source code changes. There is one library per supported GUI (such as

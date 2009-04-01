@@ -1,4 +1,6 @@
+usr/bin/wx-config
 usr/bin/wx-config-2.8
+usr/bin/wxrc
 usr/bin/wxrc-2.8.exe
 usr/include/wx-2.8/wx/aboutdlg.h
 usr/include/wx-2.8/wx/accel.h

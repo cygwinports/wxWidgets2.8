@@ -21,13 +21,13 @@ DISTCLEANFILES="wxPython/build_options.py"
 
 slot=${PV_MAJ_MIN}
 
-PKG_NAMES="${PN} libwxbase2.8_0 libwxbase2.8-devel libwxgtk2.8_0 libwxgtk2.8-devel
+PKG_NAMES="${PN} libwx_baseu2.8_0 libwx_baseu2.8-devel libwx_gtk2u2.8_0 libwx_gtk2u2.8-devel
            python-wx2.8 python-wxversion"
-libwxbase2_8_0_CONTENTS="usr/bin/cygwx_base*-2.8-0.dll usr/share/doc/ usr/share/locale/"
-libwxgtk2_8_0_CONTENTS="usr/bin/cygwx_gtk2*-2.8-0.dll"
+libwx_baseu2_8_0_CONTENTS="usr/bin/cygwx_baseu*-2.8-0.dll usr/share/doc/ usr/share/locale/"
+libwx_gtk2u2_8_0_CONTENTS="usr/bin/cygwx_gtk2u*-2.8-0.dll"
 python_wx2_8_CONTENTS="--exclude=wx-config-${slot} etc/*/python-wx2.8.sh
                        usr/bin/*-${slot} usr/include/wx-${slot}/wx/wxPython/
-                       ${PYTHON_SITELIB#/}/wx-${slot}-gtk2-ansi/"
+                       ${PYTHON_SITELIB#/}/wx-${slot}-gtk2-unicode/"
 python_wxversion_CONTENTS="${PYTHON_SITELIB#/}/wx.pth
                            ${PYTHON_SITELIB#/}/wxPython_common*.egg-info
                            ${PYTHON_SITELIB#/}/wxversion.*"
@@ -53,6 +53,7 @@ src_compile() {
 		--enable-compat26 \
 		--enable-optimise \
 		--enable-shared \
+		--enable-unicode \
 		--disable-gui \
 		--disable-rpath \
 		--with-expat \
@@ -68,6 +69,7 @@ src_compile() {
 		--enable-mediactrl \
 		--enable-optimise \
 		--enable-shared \
+		--enable-unicode \
 		--disable-gtktest \
 		--disable-rpath \
 		--disable-sdltest \
@@ -93,9 +95,8 @@ src_compile() {
 	export WXWIN=${S}
 
 	${PYTHON} setup.py build \
-		WX_CONFIG=${B}/lib/wx/config/inplace-gtk2-ansi-release-${slot} \
-		SYS_WX_CONFIG=/usr/lib/wx/config/gtk2-ansi-release-${slot} \
-		UNICODE=0
+		WX_CONFIG=${B}/lib/wx/config/inplace-gtk2-unicode-release-${slot} \
+		SYS_WX_CONFIG=/usr/lib/wx/config/gtk2-unicode-release-${slot}
 }
 
 src_test() {
@@ -113,9 +114,8 @@ src_install() {
 	export WXWIN=${S}
 
 	distutils_install \
-		WX_CONFIG=${B}/lib/wx/config/gtk2-ansi-release-${slot} \
-		SYS_WX_CONFIG=/usr/lib/wx/config/gtk2-ansi-release-${slot} \
-		UNICODE=0
+		WX_CONFIG=${B}/lib/wx/config/gtk2-unicode-release-${slot} \
+		SYS_WX_CONFIG=/usr/lib/wx/config/gtk2-unicode-release-${slot}
 
 	for bin in ${D}/usr/bin/*
 	do
@@ -134,10 +134,13 @@ src_install() {
 
 	mv ${D}/usr/lib/*.dll ${D}/usr/bin
 	mv ${D}/usr/bin/wxrc-${slot}{,.exe}
-
 	# FIXME: wrapper
+	dosym wxrc-${slot}.exe /usr/bin/wxrc
+
 	rm -f ${D}/usr/bin/wx-config-${slot}
-	dosym ../lib/wx/config/gtk2-ansi-release-${slot} /usr/bin/wx-config-${slot}
+	dosym ../lib/wx/config/gtk2-unicode-release-${slot} /usr/bin/wx-config-${slot}
+	# FIXME: wrapper
+	dosym ../lib/wx/config/gtk2-unicode-release-${slot} /usr/bin/wx-config
 
 	cd ${S}
 	dodoc INSTALL-MOTIF.txt INSTALL-X11.txt README-MOTIF.txt README-X11.txt \
