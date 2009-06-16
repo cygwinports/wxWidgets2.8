@@ -13,7 +13,7 @@ thus saving a great deal of coding effort. Basic data structures such as
 strings, arrays, linked lists and hash tables are also supported.
 
 Runtime requirements:
-  cygwin-1.7.0-44
+  cygwin-1.7.0-49
   libexpat1-2.0.1-1
   libgcc1-4.3.2-2
   libiconv2-1.12-10
@@ -25,16 +25,16 @@ Runtime requirements:
   gstreamer0.10-plugins-ximage
   libcairo2-1.8.6-10
   libesd0-0.2.41-10
-  libgdk_pixbuf2.0_0-2.16.0-1
+  libgdk_pixbuf2.0_0-2.16.2-1
   libGL1-7.2-10
-  libglib2.0_0-2.20.0-1
+  libglib2.0_0-2.20.3-1
   libgnomeprint2.2_0-2.18.6-1
   libgnomeprintui2.2_0-2.18.4-1
-  libgstinterfaces0.10_0-0.10.22-10
-  libgstreamer0.10_0-0.10.22-10
-  libgtk2.0_0-2.16.0-1
+  libgstinterfaces0.10_0-0.10.23-1
+  libgstreamer0.10_0-0.10.23-1
+  libgtk2.0_0-2.16.2-1
   libjpeg62-6b-20
-  libpango1.0_0-1.24.0-1
+  libpango1.0_0-1.24.2-1
   libpng12-1.2.35-10
   libSM6-1.1.0-10
   libtiff5-3.8.2-10
@@ -51,7 +51,7 @@ Build requirements:
   gcc4-core-4.3.2-2
   gcc4-g++-4.3.2-2
   make-3.81-2
-  pkg-config-0.23a-2
+  pkg-config-0.23b-10
   sed-4.1.5-2
 
 Canonical website:
@@ -63,19 +63,19 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack wxWidgets2.8-2.8.9.2-X-src.tar.bz2
+  unpack wxWidgets2.8-2.8.10.1-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./wxWidgets2.8-2.8.9.2-X.cygport all
+  cygport ./wxWidgets2.8-2.8.10.1-X.cygport all
 
 This will create:
-  /usr/src/libwx_baseu2.8-devel-2.8.9.2-X.tar.bz2
-  /usr/src/libwx_baseu2.8_0-2.8.9.2-X.tar.bz2
-  /usr/src/libwx_gtk2u2.8-devel-2.8.9.2-X.tar.bz2
-  /usr/src/libwx_gtk2u2.8_0-2.8.9.2-X.tar.bz2
-  /usr/src/python-wx2.8-2.8.9.2-X.tar.bz2
-  /usr/src/wxWidgets2.8-2.8.9.2-X-src.tar.bz2
+  /usr/src/libwx_baseu2.8-devel-2.8.10.1-X.tar.bz2
+  /usr/src/libwx_baseu2.8_0-2.8.10.1-X.tar.bz2
+  /usr/src/libwx_gtk2u2.8-devel-2.8.10.1-X.tar.bz2
+  /usr/src/libwx_gtk2u2.8_0-2.8.10.1-X.tar.bz2
+  /usr/src/python-wx2.8-2.8.10.1-X.tar.bz2
+  /usr/src/wxWidgets2.8-2.8.10.1-X-src.tar.bz2
 
 A list of files in each package can be found by running:
 cygcheck -l PACKAGE [PACKAGE2 ...]
@@ -83,6 +83,10 @@ cygcheck -l PACKAGE [PACKAGE2 ...]
 -------------------------------------------
 
 Port Notes:
+
+----- version 2.8.10.1-1 -----
+Version bump.
+Editra is now available as its own package.
 
 ----- version 2.8.9.2-10 -----
 Initial release of 2.8 branch for Cygwin 1.7.

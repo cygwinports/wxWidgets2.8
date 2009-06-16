@@ -1,5 +1,0 @@
-#!/bin/sh
-bindir=/usr/bin
-slot=2.8
-
-/usr/sbin/update-alternatives --remove pywxrc ${bindir}/pywxrc-${slot}
