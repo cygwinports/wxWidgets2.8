@@ -1,5 +1,5 @@
 category: X11
-requires: cygwin libGL-devel libgtk2.0-devel libstdc++6-devel libwx_baseu2.8-devel libwx_gtk2u2.8_0 libX11-devel
+requires: libGL-devel libgtk2.0-devel libstdc++6-devel libwx_baseu2.8-devel libwx_gtk2u2.8_0 libX11-devel
 external-source: wxWidgets2.8
 sdesc: "wxWidgets 2.8 C++ application framework (GTK+ unicode development)"
 ldesc: "wxWidgets is a set of libraries that allows C++ applications to
