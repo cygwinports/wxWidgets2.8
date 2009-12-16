@@ -3,20 +3,21 @@ inherit distutils
 DESCRIPTION="wxWidgets C++ application framework"
 HOMEPAGE="http://wxwidgets.org/"
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
+SRC_DIR="wxPython-src-${PV}"
+
 PATCH_URI="
 	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.10-collision.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8.9-wxversion-scripts.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8-drop-editra.patch
+	mirror://portage/dev-python/wxpython/files/wxGTK-2.8.10.1-CVE-2009-2369.patch
+	mirror://portage/dev-python/wxpython/files/wxGTK-2.8.10.1-gsocket.patch
 	2.8.8-configure.patch
 	2.8.8-cygwin-unix.patch
-	2.8.8-dllexport.patch
 	2.8.8-dlopen.patch
 	2.8.8-gtk2-no-idle-handler.patch
-	2.8.8-odbc.patch
 	2.8.8-python-build.patch
-	2.8.9-std-wstring.patch
+	2.8.10-use-auto-import.patch
 "
-SRC_DIR="wxPython-src-${PV}"
 
 DISTCLEANFILES="wxPython/build_options.py"
 
@@ -64,8 +65,10 @@ src_compile() {
 
 	rm -f configarg.cache
 
+	# esd: obsolete
 	# gnomevfs: Gentoo bug 203389
 	cygconf \
+		ac_cv_lib_esd_esd_close=no ac_cv_header_esd_h=no \
 		--enable-compat26 \
 		--enable-graphics_ctx \
 		--enable-mediactrl \
@@ -76,7 +79,7 @@ src_compile() {
 		--disable-rpath \
 		--disable-sdltest \
 		--with-expat \
-		--with-gtk=2 --with-gnomeprint --without-gnomevfs \
+		--with-gtk=2 --without-gnomeprint --without-gnomevfs \
 		--with-libpng \
 		--with-libjpeg \
 		--with-libtiff \

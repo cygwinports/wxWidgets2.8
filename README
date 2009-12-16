@@ -13,43 +13,40 @@ thus saving a great deal of coding effort. Basic data structures such as
 strings, arrays, linked lists and hash tables are also supported.
 
 Runtime requirements:
-  cygwin-1.7.0-49
+  cygwin-1.7.0-67
   libexpat1-2.0.1-1
-  libgcc1-4.3.2-2
+  libgcc1-4.3.4-3
   libiconv2-1.12-10
-  libstdc++6-4.3.2-2
+  libstdc++6-4.3.4-3
   zlib0-1.2.3-10
 (gtk2)
   gstreamer0.10-plugins-base
   gstreamer0.10-plugins-oss
   gstreamer0.10-plugins-ximage
-  libcairo2-1.8.6-10
-  libesd0-0.2.41-10
-  libgdk_pixbuf2.0_0-2.16.2-1
-  libGL1-7.2-10
-  libglib2.0_0-2.20.3-1
-  libgnomeprint2.2_0-2.18.6-1
-  libgnomeprintui2.2_0-2.18.4-1
-  libgstinterfaces0.10_0-0.10.23-1
-  libgstreamer0.10_0-0.10.23-1
-  libgtk2.0_0-2.16.2-1
-  libjpeg62-6b-20
-  libpango1.0_0-1.24.2-1
+  libcairo2-1.8.8-1
+  libgdk_pixbuf2.0_0-2.18.3-1
+  libGL1-7.5.2-1
+  libglib2.0_0-2.22.2-1
+  libgstinterfaces0.10_0-0.10.25-1
+  libgstreamer0.10_0-0.10.25-1
+  libgtk2.0_0-2.18.3-1
+  libjpeg7-7-10
+  libpango1.0_0-1.26.0-1
   libpng12-1.2.35-10
-  libSM6-1.1.0-10
-  libtiff5-3.8.2-10
-  libX11_6-1.2-10
-  libXinerama1-1.0.3-10
+  libSM6-1.1.1-1
+  libtiff5-3.8.2-11
+  libX11_6-1.3.2-2
+  libXinerama1-1.1-1
 
 Build requirements:
 (besides corresponding -devel packages)
   autoconf2.5-2.63-10
-  binutils-20080624-2
+  binutils-2.19.51-1
   cppunit-1.12.1-1
-  cygport-0.9.6-1
-  gawk-3.1.6-2
-  gcc4-core-4.3.2-2
-  gcc4-g++-4.3.2-2
+  cygport-0.9.10-1
+  gawk-3.1.7-1
+  gcc4-core-4.3.4-3
+  gcc4-g++-4.3.4-3
   make-3.81-2
   pkg-config-0.23b-10
   sed-4.1.5-2
@@ -83,6 +80,12 @@ cygcheck -l PACKAGE [PACKAGE2 ...]
 -------------------------------------------
 
 Port Notes:
+
+----- version 2.8.10.1-2 -----
+Rebuilt to use auto-import instead of dllimport; may require rebuild
+of some dependent packages.
+Dropped dependencies on obsolete libesd and libgnomeprint.
+Added patches for CVE-2009-2369 and for compatibility with glib-2.22.
 
 ----- version 2.8.10.1-1 -----
 Version bump.

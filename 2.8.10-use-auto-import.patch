@@ -1,0 +1,14 @@
+Just use auto-import instead, works much better with gcc-4.3
+
+--- origsrc/wxPython-src-2.8.10.1/include/wx/dlimpexp.h	2007-11-12 13:33:30.000000000 -0600
++++ src/wxPython-src-2.8.10.1/include/wx/dlimpexp.h	2009-12-15 03:28:21.644294700 -0600
+@@ -48,9 +48,6 @@
+ #        define WXEXPORT __declspec(export)
+ #        define WXIMPORT __declspec(import)
+ #    endif
+-#elif defined(__CYGWIN__)
+-#    define WXEXPORT __declspec(dllexport)
+-#    define WXIMPORT __declspec(dllimport)
+ #endif
+ 
+ /* for other platforms/compilers we don't anything */
