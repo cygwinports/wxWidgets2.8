@@ -9,8 +9,8 @@ PATCH_URI="
 	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.10-collision.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8.9-wxversion-scripts.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8-drop-editra.patch
-	mirror://portage/dev-python/wxpython/files/wxGTK-2.8.10.1-CVE-2009-2369.patch
-	mirror://portage/dev-python/wxpython/files/wxGTK-2.8.10.1-gsocket.patch
+	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.10.1-CVE-2009-2369.patch
+	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.10.1-gsocket.patch
 	2.8.8-configure.patch
 	2.8.8-cygwin-unix.patch
 	2.8.8-dlopen.patch

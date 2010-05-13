@@ -13,43 +13,43 @@ thus saving a great deal of coding effort. Basic data structures such as
 strings, arrays, linked lists and hash tables are also supported.
 
 Runtime requirements:
-  cygwin-1.7.0-67
+  cygwin-1.7.5-1
   libexpat1-2.0.1-1
   libgcc1-4.3.4-3
-  libiconv2-1.12-10
+  libiconv2-1.13.1-1
   libstdc++6-4.3.4-3
   zlib0-1.2.3-10
 (gtk2)
   gstreamer0.10-plugins-base
   gstreamer0.10-plugins-oss
   gstreamer0.10-plugins-ximage
-  libcairo2-1.8.8-1
-  libgdk_pixbuf2.0_0-2.18.3-1
-  libGL1-7.5.2-1
-  libglib2.0_0-2.22.2-1
-  libgstinterfaces0.10_0-0.10.25-1
-  libgstreamer0.10_0-0.10.25-1
-  libgtk2.0_0-2.18.3-1
+  libcairo2-1.8.10-1
+  libgdk_pixbuf2.0_0-2.18.6-1
+  libGL1-7.6.1-1
+  libglib2.0_0-2.22.4-2
+  libgstinterfaces0.10_0-0.10.28-1
+  libgstreamer0.10_0-0.10.28-1
+  libgtk2.0_0-2.18.6-1
   libjpeg7-7-10
-  libpango1.0_0-1.26.0-1
+  libpango1.0_0-1.26.2-1
   libpng12-1.2.35-10
   libSM6-1.1.1-1
-  libtiff5-3.8.2-11
-  libX11_6-1.3.2-2
+  libtiff5-3.9.2-1
+  libX11_6-1.3.3-1
   libXinerama1-1.1-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  autoconf2.5-2.63-10
-  binutils-2.19.51-1
+  autoconf2.5-2.65-1
+  binutils-2.20.51-1
   cppunit-1.12.1-1
-  cygport-0.9.10-1
+  cygport-0.9.83-1
   gawk-3.1.7-1
   gcc4-core-4.3.4-3
   gcc4-g++-4.3.4-3
   make-3.81-2
   pkg-config-0.23b-10
-  sed-4.1.5-2
+  sed-4.2.1-1
 
 Canonical website:
   http://www.wxwidgets.org/
@@ -80,6 +80,9 @@ cygcheck -l PACKAGE [PACKAGE2 ...]
 -------------------------------------------
 
 Port Notes:
+
+----- version 2.8.10.1-3 -----
+Rebuilt bindings for Python 2.6.
 
 ----- version 2.8.10.1-2 -----
 Rebuilt to use auto-import instead of dllimport; may require rebuild
