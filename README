@@ -17,6 +17,7 @@ Runtime requirements:
   libexpat1-2.0.1-1
   libgcc1-4.3.4-3
   libiconv2-1.13.1-1
+  libiodbc2-3.52.7-1
   libstdc++6-4.3.4-3
   zlib0-1.2.3-10
 (gtk2)
@@ -60,19 +61,19 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack wxWidgets2.8-2.8.10.1-X-src.tar.bz2
+  unpack wxWidgets2.8-2.8.11.0-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./wxWidgets2.8-2.8.10.1-X.cygport all
+  cygport ./wxWidgets2.8-2.8.11.0-X.cygport all
 
 This will create:
-  /usr/src/libwx_baseu2.8-devel-2.8.10.1-X.tar.bz2
-  /usr/src/libwx_baseu2.8_0-2.8.10.1-X.tar.bz2
-  /usr/src/libwx_gtk2u2.8-devel-2.8.10.1-X.tar.bz2
-  /usr/src/libwx_gtk2u2.8_0-2.8.10.1-X.tar.bz2
-  /usr/src/python-wx2.8-2.8.10.1-X.tar.bz2
-  /usr/src/wxWidgets2.8-2.8.10.1-X-src.tar.bz2
+  /usr/src/libwx_baseu2.8-devel-2.8.11.0-X.tar.bz2
+  /usr/src/libwx_baseu2.8_0-2.8.11.0-X.tar.bz2
+  /usr/src/libwx_gtk2u2.8-devel-2.8.11.0-X.tar.bz2
+  /usr/src/libwx_gtk2u2.8_0-2.8.11.0-X.tar.bz2
+  /usr/src/python-wx2.8-2.8.11.0-X.tar.bz2
+  /usr/src/wxWidgets2.8-2.8.11.0-X-src.tar.bz2
 
 A list of files in each package can be found by running:
 cygcheck -l PACKAGE [PACKAGE2 ...]
@@ -81,8 +82,9 @@ cygcheck -l PACKAGE [PACKAGE2 ...]
 
 Port Notes:
 
------ version 2.8.10.1-3 -----
-Rebuilt bindings for Python 2.6.
+----- version 2.8.11.0-1 -----
+Version bump.
+Added iODBC support.
 
 ----- version 2.8.10.1-2 -----
 Rebuilt to use auto-import instead of dllimport; may require rebuild

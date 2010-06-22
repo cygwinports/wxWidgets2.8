@@ -2,15 +2,16 @@ inherit distutils
 
 DESCRIPTION="wxWidgets C++ application framework"
 HOMEPAGE="http://wxwidgets.org/"
-SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
+#SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 SRC_DIR="wxPython-src-${PV}"
 
+SRC_URI=${SRC_DIR}.tar.bz2
+
 PATCH_URI="
-	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.10-collision.patch
+	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.11-unicode-odbc.patch
+	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.11-collision.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8.9-wxversion-scripts.patch
-	mirror://portage/dev-python/wxpython/files/wxpython-2.8-drop-editra.patch
-	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.10.1-CVE-2009-2369.patch
-	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.10.1-gsocket.patch
+	mirror://portage/dev-python/wxpython/files/wxpython-2.8.11-drop-editra.patch
 	2.8.8-configure.patch
 	2.8.8-cygwin-unix.patch
 	2.8.8-dlopen.patch
@@ -61,7 +62,7 @@ src_compile() {
 		--disable-rpath \
 		--with-expat \
 		--with-zlib \
-		--without-odbc
+		--with-odbc
 
 	rm -f configarg.cache
 
@@ -86,7 +87,7 @@ src_compile() {
 		--with-libxpm \
 		--with-opengl \
 		--with-zlib \
-		--without-odbc
+		--with-odbc
 
 	cygmake
 
