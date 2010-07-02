@@ -1,16 +1,5 @@
 --- origsrc/wxPython-src-2.8.8.0/build/aclocal/bakefile.m4	2008-05-31 01:03:55.000000000 -0500
 +++ src/wxPython-src-2.8.8.0/build/aclocal/bakefile.m4	2008-06-29 17:37:08.390625000 -0500
-@@ -424,8 +424,8 @@
- 
-       *-*-cygwin* | *-*-mingw32* )
-         PIC_FLAG=""
--        SHARED_LD_CC="\$(CC) -shared -o"
--        SHARED_LD_CXX="\$(CXX) -shared -o"
-+        SHARED_LD_CC="\$(CC) -shared -Wl,--enable-auto-image-base -o"
-+        SHARED_LD_CXX="\$(CXX) -shared -Wl,--enable-auto-image-base -o"
-         WINDOWS_IMPLIB=1
-       ;;
- 
 @@ -659,7 +659,7 @@
  
      LDFLAGS_GUI=
