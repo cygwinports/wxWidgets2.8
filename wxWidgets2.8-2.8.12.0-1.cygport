@@ -2,29 +2,28 @@ inherit distutils
 
 DESCRIPTION="wxWidgets C++ application framework"
 HOMEPAGE="http://wxwidgets.org/"
-#SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
+SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 SRC_DIR="wxPython-src-${PV}"
-
-SRC_URI=${SRC_DIR}.tar.bz2
 
 PATCH_URI="
 	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.11-unicode-odbc.patch
 	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.11-collision.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8.9-wxversion-scripts.patch
-	mirror://portage/dev-python/wxpython/files/wxpython-2.8.11-drop-editra.patch
+	mirror://portage/dev-python/wxpython/files/wxpython-2.8.12-drop-editra.patch
 	2.8.8-configure.patch
 	2.8.8-cygwin-unix.patch
 	2.8.8-dlopen.patch
 	2.8.8-gtk2-no-idle-handler.patch
 	2.8.8-python-build.patch
 	2.8.10-use-auto-import.patch
+	2.8.12-bakefile-version.patch
 "
 
 DISTCLEANFILES="wxPython/build_options.py"
 
 slot=${PV_MAJ_MIN}
 
-PKG_NAMES="${PN} libwx_baseu2.8_0 libwx_baseu2.8-devel libwx_gtk2u2.8_0 libwx_gtk2u2.8-devel
+PKG_NAMES="libwx_baseu2.8_0 libwx_baseu2.8-devel libwx_gtk2u2.8_0 libwx_gtk2u2.8-devel
            python-wx2.8 python-wxversion"
 libwx_baseu2_8_0_CONTENTS="usr/bin/cygwx_baseu*-2.8-0.dll usr/share/doc/ usr/share/locale/"
 libwx_gtk2u2_8_0_CONTENTS="usr/bin/cygwx_gtk2u*-2.8-0.dll"
@@ -36,7 +35,7 @@ python_wxversion_CONTENTS="${PYTHON_SITELIB#/}/wx.pth
                            ${PYTHON_SITELIB#/}/wxPython_common*.egg-info
                            ${PYTHON_SITELIB#/}/wxversion.*"
 
-DIFF_EXCLUDES="swigver.h wx.pth *_wrap.cpp"
+DIFF_EXCLUDES="configure swigver.h wx.pth *_wrap.cpp"
 
 MAKEOPTS+=" -j1"
 
