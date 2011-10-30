@@ -1,5 +1,5 @@
 category: X11
-requires: libexpat1 libgcc1 libiconv2 libiodbc2 libstdc++6 zlib0
+requires: libexpat1 libgcc1 libiconv2 libstdc++6 zlib0
 external-source: wxWidgets2.8
 sdesc: "wxWidgets 2.8 C++ application framework (base unicode runtime)"
 ldesc: "wxWidgets is a set of libraries that allows C++ applications to

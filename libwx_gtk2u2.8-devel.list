@@ -1,6 +1,4 @@
-usr/bin/wx-config
 usr/bin/wx-config-2.8
-usr/bin/wxrc
 usr/bin/wxrc-2.8.exe
 usr/include/wx-2.8/wx/aboutdlg.h
 usr/include/wx-2.8/wx/accel.h
@@ -194,14 +192,10 @@ usr/include/wx-2.8/wx/wxhtml.h
 usr/include/wx-2.8/wx/xpmdecod.h
 usr/include/wx-2.8/wx/xpmhand.h
 usr/include/wx-2.8/wx/aui/
-usr/include/wx-2.8/wx/fl/
 usr/include/wx-2.8/wx/generic/
 usr/include/wx-2.8/wx/gizmos/
 usr/include/wx-2.8/wx/gtk/
 usr/include/wx-2.8/wx/html/
-usr/include/wx-2.8/wx/mmedia/
-usr/include/wx-2.8/wx/ogl/
-usr/include/wx-2.8/wx/plot/
 usr/include/wx-2.8/wx/richtext/
 usr/include/wx-2.8/wx/stc/
 usr/include/wx-2.8/wx/svg/

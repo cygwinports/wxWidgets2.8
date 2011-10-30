@@ -6,7 +6,6 @@ SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 SRC_DIR="wxPython-src-${PV}"
 
 PATCH_URI="
-	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.11-unicode-odbc.patch
 	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.11-collision.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8.9-wxversion-scripts.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8.12-drop-editra.patch
@@ -24,13 +23,13 @@ DISTCLEANFILES="wxPython/build_options.py"
 slot=${PV_MAJ_MIN}
 
 PKG_NAMES="libwx_baseu2.8_0 libwx_baseu2.8-devel libwx_gtk2u2.8_0 libwx_gtk2u2.8-devel
-           python-wx2.8 python-wxversion"
+           python-wx2.8 python-wxversion python-wx-tools"
 libwx_baseu2_8_0_CONTENTS="usr/bin/cygwx_baseu*-2.8-0.dll usr/share/doc/ usr/share/locale/"
 libwx_gtk2u2_8_0_CONTENTS="usr/bin/cygwx_gtk2u*-2.8-0.dll"
-python_wx2_8_CONTENTS="etc/ usr/bin/helpviewer usr/bin/img2* usr/bin/py* usr/bin/xrced
-                       usr/include/wx-${slot}/wx/wxPython/
-                       ${PYTHON_SITELIB#/}/wx-${slot}-gtk2-unicode/
-                       usr/share/applications/ usr/share/icons/"
+python_wx2_8_CONTENTS="usr/include/wx-${slot}/wx/wxPython/
+                       ${PYTHON_SITELIB#/}/wx-${slot}-gtk2-unicode/"
+python_wx_tools_CONTENTS="etc/ usr/bin/helpviewer usr/bin/img2* usr/bin/py* usr/bin/xrced
+                          usr/share/applications/ usr/share/icons/"
 python_wxversion_CONTENTS="${PYTHON_SITELIB#/}/wx.pth
                            ${PYTHON_SITELIB#/}/wxPython_common*.egg-info
                            ${PYTHON_SITELIB#/}/wxversion.*"
@@ -60,8 +59,7 @@ src_compile() {
 		--disable-gui \
 		--disable-rpath \
 		--with-expat \
-		--with-zlib \
-		--with-odbc
+		--with-zlib
 
 	rm -f configarg.cache
 
@@ -85,13 +83,12 @@ src_compile() {
 		--with-libtiff \
 		--with-libxpm \
 		--with-opengl \
-		--with-zlib \
-		--with-odbc
+		--with-zlib
 
 	cygmake
 
 	cd contrib/src
-	cygmake
+	cygmake CONTRIB_SUBDIRS="gizmos stc svg"
 
 	mkdir -p ${B}/wxPython
 	lndirs ${S}/wxPython ${B}/wxPython
@@ -122,11 +119,6 @@ src_install() {
 		WX_CONFIG=${B}/lib/wx/config/gtk2-unicode-release-${slot} \
 		SYS_WX_CONFIG=/usr/lib/wx/config/gtk2-unicode-release-${slot}
 
-#	for bin in ${D}/usr/bin/*
-#	do
-#		mv ${bin} ${bin}-${slot}
-#	done
-
 	cd ${B}
 	cyginstall
 
@@ -135,17 +127,13 @@ src_install() {
 	rm -f ${D}/usr/lib/wx/config/inplace-*
 
 	cd contrib/src
-	cyginstall
+	cyginstall CONTRIB_SUBDIRS="gizmos stc svg"
 
 	mv ${D}/usr/lib/*.dll ${D}/usr/bin
 	mv ${D}/usr/bin/wxrc-${slot}{,.exe}
-	# FIXME: wrapper
-	dosym wxrc-${slot}.exe /usr/bin/wxrc
 
 	rm -f ${D}/usr/bin/wx-config-${slot}
 	dosym ../lib/wx/config/gtk2-unicode-release-${slot} /usr/bin/wx-config-${slot}
-	# FIXME: wrapper
-	dosym ../lib/wx/config/gtk2-unicode-release-${slot} /usr/bin/wx-config
 
 	cd ${S}
 	dodoc INSTALL-MOTIF.txt INSTALL-X11.txt README-MOTIF.txt README-X11.txt \
@@ -158,11 +146,10 @@ src_install() {
 	do
 		insinto /usr/share/icons/hicolor/${i}x${i}/apps
 		newins ${S}/wxPython/wx/py/PyCrust_${i}.png PyCrust.png
+		newins ${S}/wxPython/wx/tools/XRCed/XRCed_${i}.png XRCed.png
 	done
-	make_desktop_entry pyalamode PyAlaMode PyCrust "Development;GTK"
 	make_desktop_entry pycrust   PyCrust   PyCrust "Development;GTK"
-	make_desktop_entry pyshell   PyShell   PyCrust "Development;GTK"
-	make_desktop_entry xrced     XRCed     PyCrust "Development;GTK"
+	make_desktop_entry xrced     XRCed     XRCed   "Development;GTK"
 
 	cd ${S}/docs
 	dodoc changes.txt gpl.txt lgpl.txt licendoc.txt preamble.txt todo.txt
