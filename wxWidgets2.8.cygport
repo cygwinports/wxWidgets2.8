@@ -1,6 +1,16 @@
 inherit distutils
 
-DESCRIPTION="wxWidgets C++ application framework"
+NAME="wxWidgets2.8"
+VERSION=2.8.12.1
+RELEASE=2
+CATEGORY="X11"
+SUMMARY="wxWidgets C++ application framework"
+DESCRIPTION="wxWidgets is a set of libraries that allows C++ applications to
+compile and run on several different types of computer, with minimal source
+code changes. There is one library per supported GUI. As well as providing a
+common API for GUI functionality, it provides functionality for accessing some
+commonly-used operating system facilities, from copying and deleting files to
+socket and thread support."
 HOMEPAGE="http://wxwidgets.org/"
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 SRC_DIR="wxPython-src-${PV}"
@@ -24,12 +34,21 @@ slot=${PV_MAJ_MIN}
 
 PKG_NAMES="libwx_baseu2.8_0 libwx_baseu2.8-devel libwx_gtk2u2.8_0 libwx_gtk2u2.8-devel
            python-wx2.8 python-wxversion python-wx-tools"
+libwx_baseu2_8_0_SUMMARY="${SUMMARY} (base unicode runtime)"
 libwx_baseu2_8_0_CONTENTS="usr/bin/cygwx_baseu*-2.8-0.dll usr/share/doc/ usr/share/locale/"
+libwx_baseu2_8_devel_SUMMARY="${SUMMARY} (base unicode development)"
+libwx_baseu2_8_devel_REQUIRES="libexpat1-devel libiconv zlib-devel"
+libwx_gtk2u2_8_0_SUMMARY="${SUMMARY} (GTK+ unicode runtime)"
 libwx_gtk2u2_8_0_CONTENTS="usr/bin/cygwx_gtk2u*-2.8-0.dll"
+libwx_gtk2u2_8_devel_SUMMARY="${SUMMARY} (GTK+ unicode development)"
+libwx_gtk2u2_8_devel_REQUIRES="libGL-devel libglib2.0-devel libgtk2.0-devel libX11-devel"
+python_wx2_8_SUMMARY="${SUMMARY} (Python bindings)"
 python_wx2_8_CONTENTS="usr/include/wx-${slot}/wx/wxPython/
                        ${PYTHON_SITELIB#/}/wx-${slot}-gtk2-unicode/"
+python_wx_tools_SUMMARY="wxPython development tools"
 python_wx_tools_CONTENTS="etc/ usr/bin/helpviewer usr/bin/img2* usr/bin/py* usr/bin/xrced
                           usr/share/applications/ usr/share/icons/"
+python_wxversion_SUMMARY="wxPython version selection module"
 python_wxversion_CONTENTS="${PYTHON_SITELIB#/}/wx.pth
                            ${PYTHON_SITELIB#/}/wxPython_common*.egg-info
                            ${PYTHON_SITELIB#/}/wxversion.*"
