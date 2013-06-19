@@ -33,19 +33,22 @@ DISTCLEANFILES="wxPython/build_options.py"
 slot=${PV_MAJ_MIN}
 
 PKG_NAMES="libwx_baseu2.8_0 libwx_baseu2.8-devel libwx_gtk2u2.8_0 libwx_gtk2u2.8-devel
-           python-wx2.8 python-wxversion python-wx-tools"
+           libwx_gtk2u2.8-doc python-wx2.8 python-wxversion python-wx-tools"
 libwx_baseu2_8_0_SUMMARY="${SUMMARY} (base unicode runtime)"
-libwx_baseu2_8_0_CONTENTS="usr/bin/cygwx_baseu*-2.8-0.dll usr/share/doc/ usr/share/locale/"
+libwx_baseu2_8_0_CONTENTS="--exclude=html usr/bin/cygwx_baseu*-2.8-0.dll usr/share/doc/ usr/share/locale/"
 libwx_baseu2_8_devel_CATEGORY="_obsolete"
 libwx_baseu2_8_devel_SUMMARY="Obsolete package"
 libwx_baseu2_8_devel_REQUIRES="libwx_gtk2u2.8-devel"
+libwx_baseu2_8_devel_CONTENTS= # empty
 libwx_gtk2u2_8_0_SUMMARY="${SUMMARY} (GTK+ unicode runtime)"
 libwx_gtk2u2_8_0_CONTENTS="usr/bin/cygwx_gtk2u*-2.8-0.dll"
 libwx_gtk2u2_8_devel_SUMMARY="${SUMMARY} (development)"
 libwx_gtk2u2_8_devel_REQUIRES="libexpat1-devel libGL-devel libglib2.0-devel libgtk2.0-devel libiconv libX11-devel zlib-devel"
-libwx_gtk2u2_8_devel_CONTENTS="usr/bin/wx-config-2.8 usr/bin/wxrc-2.8.exe
-			usr/include/wx-2.8/ usr/lib/libwx* usr/lib/wx/
-			usr/share/aclocal/ usr/share/bakefile/"
+libwx_gtk2u2_8_devel_CONTENTS="--exclude=wxPython usr/bin/wx-config-2.8
+	usr/bin/wxrc-2.8.exe usr/include/wx-2.8/ usr/lib/libwx* usr/lib/wx/
+	usr/share/aclocal/ usr/share/bakefile/"
+libwx_gtk2u2_8_doc_SUMMARY="${SUMMARY} (documentation)"
+libwx_gtk2u2_8_doc_CONTENTS="usr/share/doc/${NAME}/html/"
 python_wx2_8_SUMMARY="${SUMMARY} (Python bindings)"
 python_wx2_8_CONTENTS="usr/include/wx-${slot}/wx/wxPython/
                        ${PYTHON_SITELIB#/}/wx-${slot}-gtk2-unicode/"
