@@ -26,6 +26,7 @@ PATCH_URI="
 	2.8.8-python-build.patch
 	2.8.10-use-auto-import.patch
 	2.8.12-bakefile-version.patch
+	2.8.12-cygwin64.patch
 "
 
 DISTCLEANFILES="wxPython/build_options.py"
@@ -68,7 +69,8 @@ src_compile() {
 	local myconf
 
 	cd ${S}
-	autoconf -f || error "autoconf failed"
+	NO_ACLOCAL=1 NO_LIBTOOLIZE=1 NO_AUTOHEADER=1 NO_AUTOMAKE=1 \
+	cygautoreconf
 
 	cd ${S}/locale
 	rm -f *.mo

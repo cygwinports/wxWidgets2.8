@@ -1,0 +1,13 @@
+False on x86_64-cygwin; breaks compilation with all the [0u] etc.
+
+--- origsrc/wxPython-src-2.8.12.1/include/wx/platform.h	2010-04-14 23:26:28.000000000 -0500
++++ src/wxPython-src-2.8.12.1/include/wx/platform.h	2013-06-19 03:09:24.717087600 -0500
+@@ -389,7 +389,7 @@
+ #        define __HPUX__
+ #    endif /* HP-UX */
+ 
+-#    if defined(__CYGWIN__) || defined(__WINE__)
++#    if defined(__WINE__)
+ #        if !defined(wxSIZE_T_IS_UINT)
+ #            define wxSIZE_T_IS_UINT
+ #        endif
