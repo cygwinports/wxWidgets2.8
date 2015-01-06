@@ -2,8 +2,8 @@ inherit distutils
 
 NAME="wxWidgets2.8"
 VERSION=2.8.12.1
-RELEASE=4
-CATEGORY="X11"
+RELEASE=5
+CATEGORY="Libs"
 SUMMARY="wxWidgets C++ application framework"
 DESCRIPTION="wxWidgets is a set of libraries that allows C++ applications to
 compile and run on several different types of computer, with minimal source
@@ -14,7 +14,6 @@ socket and thread support."
 HOMEPAGE="http://wxwidgets.org/"
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${VERSION}.tar.bz2"
 SRC_DIR="wxPython-src-${VERSION}"
-
 PATCH_URI="
 	mirror://portage/x11-libs/wxGTK/files/wxGTK-2.8.11-collision.patch
 	mirror://portage/dev-python/wxpython/files/wxpython-2.8.9-wxversion-scripts.patch
@@ -163,10 +162,6 @@ src_install() {
 	rm -f ${D}/usr/bin/wx-config-${slot}
 	dosym ../lib/wx/config/gtk2-unicode-release-${slot} /usr/bin/wx-config-${slot}
 
-	cd ${S}
-	dodoc INSTALL-MOTIF.txt INSTALL-X11.txt README-MOTIF.txt README-X11.txt \
-		patch-readme.txt
-
 	insinto /usr/share/aclocal
 	newins ${S}/wxwin.m4 wxwin-${slot}.m4
 
@@ -176,8 +171,11 @@ src_install() {
 		newins ${S}/wxPython/wx/py/PyCrust_${i}.png PyCrust.png
 		newins ${S}/wxPython/wx/tools/XRCed/XRCed_${i}.png XRCed.png
 	done
-	make_desktop_entry pycrust   PyCrust   PyCrust "Development;GTK"
-	make_desktop_entry xrced     XRCed     XRCed   "Development;GTK"
+	make_desktop_entry pyalacarte PyAlaCarte  PyCrust "Development;GTK"
+	make_desktop_entry pyalamode  PyAlamode   PyCrust "Development;GTK"
+	make_desktop_entry pycrust    PyCrust     PyCrust "Development;GTK"
+	make_desktop_entry pyshell    PyShell     PyCrust "Development;GTK"
+	make_desktop_entry xrced      XRCed       XRCed   "Development;GTK"
 
 	cd ${S}/docs
 	dodoc changes.txt gpl.txt lgpl.txt licendoc.txt preamble.txt todo.txt
