@@ -1,3 +1,13 @@
+--- origsrc/wxPython-src-2.8.12.1/configure.in	2016-05-03 18:38:35.057844000 -0500
++++ src/wxPython-src-2.8.12.1/configure.in	2016-05-03 18:49:11.333640700 -0500
+@@ -269,6 +269,7 @@ case "${host}" in
+     SO_SUFFIX=dll
+     PROGRAM_EXT=".exe"
+     DEFAULT_DEFAULT_wxUSE_MSW=1
++    CPPFLAGS="-D_GNU_SOURCE $CPPFLAGS"
+   ;;
+ 
+   *-pc-msdosdjgpp )
 --- origsrc/wxPython-src-2.8.8.0/src/unix/stdpaths.cpp	2007-07-04 14:25:09.000000000 -0500
 +++ src/wxPython-src-2.8.8.0/src/unix/stdpaths.cpp	2008-06-29 17:37:08.546875000 -0500
 @@ -34,7 +34,7 @@
