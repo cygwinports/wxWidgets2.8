@@ -2,7 +2,7 @@ inherit distutils
 
 NAME="wxWidgets2.8"
 VERSION=2.8.12.1
-RELEASE=6
+RELEASE=7
 CATEGORY="Libs"
 SUMMARY="wxWidgets C++ application framework"
 DESCRIPTION="wxWidgets is a set of libraries that allows C++ applications to
@@ -94,11 +94,11 @@ src_compile() {
 
 	# esd: obsolete
 	# gnomevfs: Gentoo bug 203389
+	# mediactrl: no support for current gstreamer
 	cygconf \
 		ac_cv_lib_esd_esd_close=no ac_cv_header_esd_h=no \
 		--enable-compat26 \
 		--enable-graphics_ctx \
-		--enable-mediactrl \
 		--enable-optimise \
 		--enable-shared \
 		--enable-unicode \
